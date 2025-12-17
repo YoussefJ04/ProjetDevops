@@ -1,4 +1,11 @@
+const express = require("express");
+const cors = require("cors");
 const pool = require("./db");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 async function initDb() {
   await pool.query(`
@@ -8,6 +15,11 @@ async function initDb() {
     );
   `);
 }
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", message: "Backend operational" });
+});
+
 
 app.get("/items", async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM items ORDER BY id ASC");
@@ -45,8 +57,11 @@ app.delete("/items/:id", async (req, res) => {
   res.status(204).send();
 });
 
+
 initDb().catch((e) => {
   console.error("DB init error:", e);
   process.exit(1);
 });
+
+module.exports = app;
 
