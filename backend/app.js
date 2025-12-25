@@ -56,5 +56,5 @@ app.delete("/items/:id", async (req, res) => {
   res.status(204).send();
 });
 
-module.exports = { app, initDb };
+module.exports = app;
 
