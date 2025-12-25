@@ -20,7 +20,6 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", message: "Backend operational" });
 });
 
-
 app.get("/items", async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM items ORDER BY id ASC");
   res.json(rows);
@@ -57,11 +56,5 @@ app.delete("/items/:id", async (req, res) => {
   res.status(204).send();
 });
 
-
-initDb().catch((e) => {
-  console.error("DB init error:", e);
-  process.exit(1);
-});
-
-module.exports = app;
+module.exports = { app, initDb };
 
