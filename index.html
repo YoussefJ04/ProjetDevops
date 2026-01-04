@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend DevOps</title>
+</head>
+<body>
+    <h1>Frontend du Projet DevOps</h1>
+    
+    <button id="btn">Tester le backend</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById("btn").onclick = async () => {
+            try {
+                const res = await fetch("http://127.0.0.1:55140/health");
+                const data = await res.json();
+                document.getElementById("result").textContent =
+                    JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById("result").textContent =
+                    "Erreur : backend inaccessible";
+            }
+        };
+    </script>
+
+</body>
+</html>
