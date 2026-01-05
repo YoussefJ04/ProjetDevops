@@ -1,5 +1,7 @@
 # Projet DevOps – Application Full Stack
 
+> Authorship: Youssef Jmal, Sofyan Guillermet-Laouad
+
 ## Présentation
 
 Ce projet a pour objectif de mettre en œuvre une chaîne DevOps complète autour d’une application full stack.
